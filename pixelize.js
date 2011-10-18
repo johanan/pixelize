@@ -45,7 +45,7 @@ pixelate.imgPixelize = function(image, scaleFactor)
 				nextCanvas.height = image.height;
 				nextCanvas.width = image.width;
 				
-				//use previous canvas as source
+				//use previous canvas as sourcea
 				var newCtx = nextCanvas.getContext('2d');
 				newCtx.drawImage(newCanvas, 0,0, image.width, image.height);
 				
