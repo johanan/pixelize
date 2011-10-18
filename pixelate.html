@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<title>Pixelate Demo</title>
+		<style>
+			body
+			{
+				background-color: #000;
+				color: #fff;
+				width: 800px;
+				margin: 0 auto;
+			}
+			
+			h1, h2
+			{
+				text-transform: uppercase;
+			}
+			
+			a, a:visited
+			{
+				color: #303133;
+			}
+		</style>
+	</head>
+	
+	<body>
+		
+		<h1>Pixelazation Demo</h1>
+		<a href="#">Back to the tutorial</a>
+		<p>I will break down what I do for each step.</p>
+		<p>Thanks to David DeSandro and John Schulz. I used a few ideas from their excellent pixelization library <a href="http://desandro.com/resources/close-pixelate/">Close Pixelate</a></p>
+		<h2>Regular photo</h2>
+		<p>This is a photo of my dog Dexter not scaled at all. It's just a regular img tag.</p> 
+		<img src="images/dexter3.jpg">
+		<h2>Photo scaled down</h2>
+		<p>This is the same photo scaled down in a canvas element. The function tests for the larger side (height or width) and then takes 100 divided by the larger side and then multiples it by 50% with a floor of 35% for really small photos. This will scale down larger photos proportionately to their size. This photo has a width of 604 which comes out to about 8.28%</p> 
+		<img id="scaledDexter" src="images/dexter3.jpg">
+		<h2>Photo Pixelized</h2> 
+		<p>This canvas has the scaled down canvas as it's source and then scales it back up to the original specs. Instant pixelization.</p>
+		<img id="dexter3" src="images/dexter3.jpg">
+		<h2>Manual pixelization ration</h2>
+		<p>You can manually set the scale ratio by using img_object.pixelize(.25). With an image this large it won't be very pixelized</p>
+		<img id="dexter25" src="images/dexter3.jpg">
+		<h2>Pixelize past recognition</h2>
+		<p>Just be careful you don't set to a high a rate or your pictures can become unrecognizable.</p>
+		<img id="dexter2" src="images/dexter3.jpg">
+		
+		<script src="pixelize.js"></script>
+		<script>
+			var docReady = function(){
+				var dexter3 = document.getElementById('dexter3').pixelize();
+				
+				var dexter25 = document.getElementById('dexter25').pixelize(.25);
+				
+				var dexter2 = document.getElementById('dexter2').pixelize(.02);
+				
+				var scaledDexter = document.getElementById('scaledDexter');
+				scaledDexter.addEventListener( 'load', function(){
+					
+					var largerSide = (this.height > this.width) ? this.height : this.width;
+					scaleFactor = (largerSide > 150) ? (100/largerSide) * .5 : .35;
+					
+					var newCanvas = document.createElement('canvas');
+					newCanvas.height = this.height*scaleFactor;
+					newCanvas.width = this.width*scaleFactor;
+			
+					var context = newCanvas.getContext('2d');
+					context.drawImage(this, 0,0,this.width*scaleFactor, this.height*scaleFactor );
+
+					this.parentNode.replaceChild(newCanvas, this);
+				})
+			}
+			
+			window.addEventListener( 'DOMContentLoaded', docReady, false);
+		</script>
+	</body>
+</html>
