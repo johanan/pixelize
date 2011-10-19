@@ -28,7 +28,7 @@ pixelate.imgPixelize = function(image, scaleFactor)
 				//determine larger side
 				var largerSide = (image.height > image.width) ? image.height : image.width;
 				//calculate a scale ratio to match the size with a floor at .35
-				scaleFactor = (largerSide > 150) ? (100/largerSide) * .5 : .35;
+				scaleFactor = (largerSide > 150) ? 50/largerSide : .35;
 			}
 				//first canvas to scale down
 			 	var newCanvas = document.createElement('canvas');
