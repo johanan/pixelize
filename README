@@ -4,7 +4,7 @@ This library came about from an the idea of what a browser would look like on th
 
 It uses two canvas elements to accomplish this. The first canvas scales the image down and the next canvas scales it back up. A little math is used to determine the scale ratio, but other than that it is pretty straight forward.
 
-I have used a few ideas from https://github.com/desandro/close-pixelate (a use essentially the same function to test for canvas support and the idea to add the function of off the img element itself). Close Pixel has more artistic options, but this library is a simple scale down and then back up.
+I have used a few ideas from https://github.com/desandro/close-pixelate (I use essentially the same function to test for canvas support and the idea to add the function off the img element itself). Close Pixel has more artistic options, but this library is a simple scale down and then back up.
 
  Examples
 

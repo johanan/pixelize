@@ -57,7 +57,7 @@
 				scaledDexter.addEventListener( 'load', function(){
 					
 					var largerSide = (this.height > this.width) ? this.height : this.width;
-					scaleFactor = (largerSide > 150) ? (100/largerSide) * .5 : .35;
+					scaleFactor = (largerSide > 150) ? (50/largerSide) : .35;
 					
 					var newCanvas = document.createElement('canvas');
 					newCanvas.height = this.height*scaleFactor;
